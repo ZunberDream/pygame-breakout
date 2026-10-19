@@ -39,8 +39,9 @@ while running:
     screen.fill((0, 0, 0))
     
     for brick in bricks:
-        pygame.draw.rect(screen, (0, 255, 255), (brick[0], brick[1], brick_w, brick_h))
+        pygame.draw.rect(screen, (200, 200, 200), (brick[0], brick[1], brick_w, brick_h))
 
+    
     pygame.draw.rect(screen, (255, 255, 255), (paddle[0], paddle[1], 100, 20))
 
     for i in range(len(ball)):
@@ -55,8 +56,8 @@ while running:
         if ball[i]["y"] >= 600:
             running = False
         
-        if (paddle[0] <= ball[i]["x"] <= paddle[0] + 100) and (ball[i]["y"] + 10 >= paddle[1]):
-            ball[i]["speed_y"] = -ball[i]["speed_y"]
+        if (paddle[0] - 10 <= ball[i]["x"] <= paddle[0] + 100 + 10 and paddle[1] - 10 <= ball[i]["y"] + 10 <= paddle[1] + 5):
+            ball[i]["speed_y"] = -abs(ball[i]["speed_y"])
             ball[i]["y"] = paddle[1] - 10
 
         for brick in bricks[:]:
